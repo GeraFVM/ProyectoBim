@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration; // Asegúrate de incluir esto para IConfiguration
 using Domain.Entities; // Asegúrate de que este es el correcto
 using Infrastructure.Data; // Asegúrate de que este es el correcto
-using Infrastructure.Services; // Reemplaza con el espacio de nombres correcto para FileConverterService
+using Application.Services; // Reemplaza con el espacio de nombres correcto para FileConverterService
 
 namespace Presentation.WebApp.Controllers
 {

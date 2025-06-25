@@ -1,33 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Presentation.WebApp\\Presentation.WebApp.csproj": {}
+    "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Presentation.WebApp\\Presentation.WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj": {
+    "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\geraf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\obj\\",
+        "projectPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\Johan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\geraf\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\Domain.csproj"
+              "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Domain\\Domain.csproj"
               }
             }
           }
@@ -42,7 +49,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -69,26 +76,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\Domain.csproj": {
+    "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\geraf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Johan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\geraf\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -107,7 +121,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -128,34 +142,41 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\geraf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Johan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\geraf\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj"
+              "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Application\\Application.csproj"
               }
             }
           }
@@ -170,7 +191,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -201,37 +222,44 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Presentation.WebApp\\Presentation.WebApp.csproj": {
+    "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Presentation.WebApp\\Presentation.WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Presentation.WebApp\\Presentation.WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Presentation.WebApp\\Presentation.WebApp.csproj",
         "projectName": "Presentation.WebApp",
-        "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Presentation.WebApp\\Presentation.WebApp.csproj",
-        "packagesPath": "C:\\Users\\geraf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Presentation.WebApp\\obj\\",
+        "projectPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Presentation.WebApp\\Presentation.WebApp.csproj",
+        "packagesPath": "C:\\Users\\Johan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Presentation.WebApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\geraf\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj"
+              "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Application\\Application.csproj"
               },
-              "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -246,7 +274,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -276,7 +304,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
