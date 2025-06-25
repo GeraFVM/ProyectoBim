@@ -1,75 +1,60 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Domain.Entities; // Asegúrate de que este es el correcto
+using Infrastructure.Data; // Asegúrate de que este es el correcto
 
-using Domain;
-using Application;
-using Infrastructure;
-
-namespace Presentation.WebApp.Controllers;
-public class PrestamosController : Controller
+namespace Presentation.WebApp.Controllers
 {
-    private readonly PrestamosDbContext _prestamosDbContext;
-    private readonly EmpleadosDbContext _empleadosDbContext;
-    private readonly ProyectosDbContext _proyectosDbContext;
-
-    public PrestamosController(IConfiguration configuration)
+    public class PrestamosController : Controller
     {
-        _PrestamosDbContext = new PrestamosDbContext(configuration.GetConnectionString("DefaultConnection"));
-        _empleadosDbContext = new EmpleadosDbContext(configuration.GetConnectionString("DefaultConnection"));
-        _proyectosDbContext = new ProyectosDbContext(configuration.GetConnectionString("DefaultConnection"));
-    }
+        private readonly PrestamosDbContext _prestamosDbContext;
 
-    public IActionResult Index()
-    {
-        var data = _PrestamosDbContext.List();
-        return View(data);
-    }
+        public PrestamosController(IConfiguration configuration)
+        {
+            _prestamosDbContext = new PrestamosDbContext(configuration.GetConnectionString("DefaultConnection"));
+        }
 
-    public IActionResult Details(Guid id)
-    {
-        var data = _PrestamosDbContext.Details(id);
-        return View(data);
-    }
+        public IActionResult Index()
+        {
+            var data = _prestamosDbContext.List();
+            return View(data);
+        }
 
-    public IActionResult Create()
-    {
-        PopulateSelectLists();
-        return View();
-    }
+        public IActionResult Details(Guid id)
+        {
+            var data = _prestamosDbContext.Details(id);
+            return View(data);
+        }
 
-    [HttpPost]
-    public IActionResult Create(Asignacion data)
-    {
-        _PrestamosDbContext.Create(data);
-        return RedirectToAction("Index");
-    }
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-    public IActionResult Edit(Guid id)
-    {
-        var data = _PrestamosDbContext.Details(id);
-        PopulateSelectLists(data);
-        return View(data);
-    }
+        [HttpPost]
+        public IActionResult Create(IM253E01Prestamo data)
+        {
+            _prestamosDbContext.Create(data);
+            return RedirectToAction("Index");
+        }
 
-    [HttpPost]
-    public IActionResult Edit(Asignacion data)
-    {
-        _PrestamosDbContext.Edit(data);
-        return RedirectToAction("Index");
-    }
+        public IActionResult Edit(Guid id)
+        {
+            var data = _prestamosDbContext.Details(id);
+            return View(data);
+        }
 
-    public IActionResult Delete(Guid id)
-    {
-        _PrestamosDbContext.Delete(id);
-        return RedirectToAction("Index");
-    }
+        [HttpPost]
+        public IActionResult Edit(IM253E01Prestamo data)
+        {
+            _prestamosDbContext.Edit(data);
+            return RedirectToAction("Index");
+        }
 
-    private void PopulateSelectLists(Asignacion asignacion = null)
-    {
-        var empleados = _empleadosDbContext.List();
-        var proyectos = _proyectosDbContext.List();
-
-        ViewBag.EmpleadoId = new SelectList(empleados, "Id", "Nombre", asignacion?.EmpleadoId);
-        ViewBag.ProyectoId = new SelectList(proyectos, "Id", "Titulo", asignacion?.ProyectoId);
+        public IActionResult Delete(Guid id)
+        {
+            _prestamosDbContext.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }

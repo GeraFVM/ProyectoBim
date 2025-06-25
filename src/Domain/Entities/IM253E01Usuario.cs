@@ -10,11 +10,16 @@ CREATE TABLE [IM253E00Usuario] (
 );
 */
 
-public class IM253E01Usuario
+namespace Domain.Entities
 {
-    public Guid Id { get; set; }
-    public string Nombre { get; set; } = string.Empty;
-    public string? Direccion { get; set; }
-    public string Telefono { get; set; } = string.Empty;
-    public string? Correo { get; set; } = string.Empty;
+   public class IM253E01Usuario
+   {
+       public Guid Id { get; set; }
+       public string Nombre { get; set; }
+       public string Direccion { get; set; }
+       public string Telefono { get; set; }
+       public string Correo { get; set; }
+       public string? Foto { get; set; } // Asegúrate de que esta propiedad esté presente
+   }
+   
 }

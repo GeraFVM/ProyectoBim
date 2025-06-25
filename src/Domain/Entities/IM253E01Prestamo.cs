@@ -11,15 +11,18 @@
 );
 */
 
-public class IM253E01Prestamo
+namespace Domain.Entities
 {
-    public Guid Id { get; set; }
-    public Guid UsuarioId { get; set; }
-    public Guid LibroId { get; set; }
-    public DateTime FechaPrestamo { get; set; }
-    public DateTime? FechaDevolucion { get; set; }
+    public class IM253E01Prestamo
+    {
+        public Guid Id { get; set; }
+        public Guid UsuarioId { get; set; }
+        public Guid LibroId { get; set; }
+        public DateTime FechaPrestamo { get; set; }
+        public DateTime? FechaDevolucion { get; set; }
 
-/*Navegation Properties*/
-public IM253E01Usuario? Usuario { get; set; }
-public IM253E01Libro? Libro { get; set; }
+        /*Navegation Properties*/
+        public IM253E01Usuario? Usuario { get; set; }
+        public IM253E01Libro? Libro { get; set; }
+    }
 }

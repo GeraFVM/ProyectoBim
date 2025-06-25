@@ -1,59 +1,62 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+using Domain.Entities; // Asegúrate de que este es el correcto
+using Infrastructure.Data; // Asegúrate de que este es el correcto
 
-using Domain;
-using Infrastructure;
-
-namespace Presentation.WebApp.Controllers;
-
-public class LibrosController : Controller
+namespace Presentation.WebApp.Controllers
 {
-      private readonly UsuariosDbContext _UsuariosDbContext;
-      public LibrosController(IConfiguration configuration)
-      {
-            _UsuariosDbContext = new UsuariosDbContext(configuration.GetConnectionString("DefaultConnection"));
-      }
+    public class LibrosController : Controller
+    {
+        private readonly UsuariosDbContext _usuariosDbContext;
 
-      public IActionResult Index()
-      {
-            var data = _UsuariosDbContext.List();
+        public LibrosController(IConfiguration configuration)
+        {
+            _usuariosDbContext = new UsuariosDbContext(configuration.GetConnectionString("DefaultConnection"));
+        }
+
+        public IActionResult Index()
+        {
+            var data = _usuariosDbContext.List();
             return View(data);
-      }
+        }
 
-      public IActionResult Details(Guid id)
-      {
-            var data = _UsuariosDbContext.Details(id);
+        public IActionResult Details(Guid id)
+        {
+            var data = _usuariosDbContext.Details(id);
             return View(data);
-      }
+        }
 
-      public IActionResult Create()
-      {
+        public IActionResult Create()
+        {
             return View();
-      }
-      [HttpPost]
-      public IActionResult Create(Empleado data)
-      {
+        }
+
+        [HttpPost]
+        public IActionResult Create(IM253E01Usuario data)
+        {
             data.Id = Guid.NewGuid();
-            _UsuariosDbContext.Create(data);
+            _usuariosDbContext.Create(data);
             return RedirectToAction("Index");
-      }
+        }
 
-      public IActionResult Edit(Guid id)
-      {
-            var data = _UsuariosDbContext.Details(id);
+        public IActionResult Edit(Guid id)
+        {
+            var data = _usuariosDbContext.Details(id);
             return View(data);
-      }
-      [HttpPost]
-      public IActionResult Edit(Empleado data)
-      {
-            _UsuariosDbContext.Edit(data);
-            return RedirectToAction("Index");
-      }
+        }
 
-      public IActionResult Delete(Guid id)
-      {
-            _UsuariosDbContext.Delete(id);
+        [HttpPost]
+        public IActionResult Edit(IM253E01Usuario data)
+        {
+            _usuariosDbContext.Edit(data);
             return RedirectToAction("Index");
-      }
+        }
+
+        public IActionResult Delete(Guid id)
+        {
+            _usuariosDbContext.Delete(id);
+            return RedirectToAction("Index");
+        }
+    }
 }

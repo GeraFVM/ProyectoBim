@@ -1,178 +1,108 @@
-using Microsoft.Data.SqlClient;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using Microsoft.Data.SqlClient;
+using Domain.Entities;
 
-using Domain;
-using Application;
-
-namespace Infrastructure;
-
-public class UsuariosDbContext
+namespace Infrastructure.Data
 {
-    private readonly string _connectionString;
-
-    public UsuariosDbContext(string connectionString)
+    public class UsuariosDbContext
     {
-        _connectionString = connectionString;
-    }
+        private readonly string _connectionString;
 
-    public List<Usuario> List()
-    {
-        var data = new List<Usuario>();
-
-        using (var con = new SqlConnection(_connectionString))
-        using (var cmd = new SqlCommand("SELECT [Id], [Nombre], [Direccion], [Telefono], [Correo] FROM [Usuario]", con))
+        public UsuariosDbContext(string connectionString)
         {
-            try
+            _connectionString = connectionString;
+        }
+
+        public List<IM253E01Usuario> List()
+        {
+            var usuarios = new List<IM253E01Usuario>();
+            using (var con = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand("SELECT [Id],[Nombre],[Direccion],[Telefono],[Correo] FROM [IM253E00Usuario]", con))
             {
                 con.Open();
-                var dr = cmd.ExecuteReader();
-                while (dr.Read())
+                using (var dr = cmd.ExecuteReader())
                 {
-                    data.Add(new Usuario
+                    while (dr.Read())
                     {
-                        Id = (Guid)dr["Id"],
-                        Nombre = dr["Nombre"] as string ?? string.Empty,
-                        Direccion = dr["Direccion"] as string ?? string.Empty,
-                        Telefono = dr["Telefono"] as string ?? string.Empty,
-                        Correo = dr["Correo"] as string ?? string.Empty
-                    });
+                        usuarios.Add(new IM253E01Usuario
+                        {
+                            Id = (Guid)dr["Id"],
+                            Nombre = dr["Nombre"].ToString(),
+                            Direccion = dr["Direccion"]?.ToString(),
+                            Telefono = dr["Telefono"].ToString(),
+                            Correo = dr["Correo"]?.ToString()
+                        });
+                    }
                 }
-                dr.Close();
-                return data;
             }
-            catch (Exception ex)
-            {
-                // Consider logging the exception here
-                throw new Exception("Error al listar usuarios.", ex);
-            }
+            return usuarios;
         }
-    }
 
-    public Usuario Details(Guid id)
-    {
-        Usuario data = null;
-
-        using (var con = new SqlConnection(_connectionString))
-        using (var cmd = new SqlCommand("SELECT [Id], [Nombre], [Direccion], [Telefono], [Correo] FROM [Usuario] WHERE [Id] = @id", con))
+        public IM253E01Usuario Details(Guid id)
         {
-            cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = id;
-            try
+            var usuario = new IM253E01Usuario();
+            using (var con = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand("SELECT [Id],[Nombre],[Direccion],[Telefono],[Correo] FROM [IM253E00Usuario] WHERE [Id] = @id", con))
             {
+                cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = id;
                 con.Open();
-                var dr = cmd.ExecuteReader();
-                if (dr.Read())
+                using (var dr = cmd.ExecuteReader())
                 {
-                    data = new Usuario
+                    if (dr.Read())
                     {
-                        Id = (Guid)dr["Id"],
-                        Nombre = dr["Nombre"] as string ?? string.Empty,
-                        Direccion = dr["Direccion"] as string ?? string.Empty,
-                        Telefono = dr["Telefono"] as string ?? string.Empty,
-                        Correo = dr["Correo"] as string ?? string.Empty
-                    };
+                        usuario.Id = (Guid)dr["Id"];
+                        usuario.Nombre = dr["Nombre"].ToString();
+                        usuario.Direccion = dr["Direccion"]?.ToString();
+                        usuario.Telefono = dr["Telefono"].ToString();
+                        usuario.Correo = dr["Correo"]?.ToString();
+                    }
                 }
-                dr.Close();
-
-                if (data == null)
-                {
-                    // No encontrado
-                    throw new Exception($"Usuario con Id {id} no encontrado.");
-                }
-
-                return data;
             }
-            catch (Exception ex)
-            {
-                // Consider logging the exception here
-                throw new Exception("Error al obtener detalles del usuario.", ex);
-            }
-        }
-    }
-
-    public void Create(Usuario data)
-    {
-        if (data == null)
-        {
-            throw new ArgumentNullException(nameof(data));
+            return usuario;
         }
 
-        data.Id = Guid.NewGuid();
-
-        using (var con = new SqlConnection(_connectionString))
-        using (var cmd = new SqlCommand("INSERT INTO [Usuario] ([Id], [Nombre], [Direccion], [Telefono], [Correo]) VALUES (@id, @nombre, @direccion, @telefono, @correo)", con))
+        public void Create(IM253E01Usuario usuario)
         {
-            cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = data.Id;
-            cmd.Parameters.Add("@nombre", SqlDbType.NVarChar, 128).Value = data.Nombre ?? string.Empty;
-            cmd.Parameters.Add("@direccion", SqlDbType.NVarChar, 256).Value = data.Direccion ?? string.Empty;
-            cmd.Parameters.Add("@telefono", SqlDbType.NVarChar, 50).Value = data.Telefono ?? string.Empty;
-            cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 128).Value = data.Correo ?? string.Empty;
-
-            try
+            using (var con = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand("INSERT INTO [IM253E00Usuario] ([Id],[Nombre],[Direccion],[Telefono],[Correo]) VALUES (@id,@nombre,@direccion,@telefono,@correo)", con))
             {
+                cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
+                cmd.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = usuario.Nombre;
+                cmd.Parameters.Add("@direccion", SqlDbType.NVarChar).Value = (object)usuario.Direccion ?? DBNull.Value;
+                cmd.Parameters.Add("@telefono", SqlDbType.NVarChar).Value = usuario.Telefono;
+                cmd.Parameters.Add("@correo", SqlDbType.NVarChar).Value = (object)usuario.Correo ?? DBNull.Value;
+
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
-            {
-                // Consider logging the exception here
-                throw new Exception("Error al crear el usuario.", ex);
-            }
-        }
-    }
-
-    public void Edit(Usuario data)
-    {
-        if (data == null)
-        {
-            throw new ArgumentNullException(nameof(data));
         }
 
-        using (var con = new SqlConnection(_connectionString))
-        using (var cmd = new SqlCommand("UPDATE [Usuario] SET [Nombre] = @nombre, [Direccion] = @direccion, [Telefono] = @telefono, [Correo] = @correo WHERE [Id] = @id", con))
+        public void Edit(IM253E01Usuario usuario)
         {
-            cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = data.Id;
-            cmd.Parameters.Add("@nombre", SqlDbType.NVarChar, 128).Value = data.Nombre ?? string.Empty;
-            cmd.Parameters.Add("@direccion", SqlDbType.NVarChar, 256).Value = data.Direccion ?? string.Empty;
-            cmd.Parameters.Add("@telefono", SqlDbType.NVarChar, 50).Value = data.Telefono ?? string.Empty;
-            cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 128).Value = data.Correo ?? string.Empty;
-
-            try
+            using (var con = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand("UPDATE [IM253E00Usuario] SET [Nombre] = @nombre, [Direccion] = @direccion, [Telefono] = @telefono, [Correo] = @correo WHERE [Id] = @id", con))
             {
+                cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = usuario.Id;
+                cmd.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = usuario.Nombre;
+                cmd.Parameters.Add("@direccion", SqlDbType.NVarChar).Value = (object)usuario.Direccion ?? DBNull.Value;
+                cmd.Parameters.Add("@telefono", SqlDbType.NVarChar).Value = usuario.Telefono;
+                cmd.Parameters.Add("@correo", SqlDbType.NVarChar).Value = (object)usuario.Correo ?? DBNull.Value;
+
                 con.Open();
-                var rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected == 0)
-                {
-                    throw new Exception($"No se encontró usuario con Id {data.Id} para actualizar.");
-                }
-            }
-            catch (Exception ex)
-            {
-                // Consider logging the exception here
-                throw new Exception("Error al editar el usuario.", ex);
+                cmd.ExecuteNonQuery();
             }
         }
-    }
 
-    public void Delete(Guid id)
-    {
-        using (var con = new SqlConnection(_connectionString))
-        using (var cmd = new SqlCommand("DELETE FROM [Usuario] WHERE [Id] = @id", con))
+        public void Delete(Guid id)
         {
-            cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = id;
-
-            try
+            using (var con = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand("DELETE FROM [IM253E00Usuario] WHERE [Id] = @id", con))
             {
+                cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = id;
                 con.Open();
-                var rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected == 0)
-                {
-                    throw new Exception($"No se encontró usuario con Id {id} para eliminar.");
-                }
-            }
-            catch (Exception ex)
-            {
-                // Consider logging the exception here
-                throw new Exception("Error al eliminar el usuario.", ex);
+                cmd.ExecuteNonQuery();
             }
         }
     }

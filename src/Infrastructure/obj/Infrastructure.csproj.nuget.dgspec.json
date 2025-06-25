@@ -1,31 +1,94 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj": {}
+    "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj",
-        "projectName": "Infrastructure",
-        "projectPath": "D:\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Alumno49\\.nuget\\packages\\",
-        "outputPath": "D:\\ProyectoBim\\src\\Infrastructure\\obj\\",
+        "projectUniqueName": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj",
+        "projectName": "Application",
+        "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\geraf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Alumno49\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\geraf\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\geraf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\geraf\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -44,12 +107,79 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\geraf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\geraf\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.9.0, )"
@@ -71,7 +201,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

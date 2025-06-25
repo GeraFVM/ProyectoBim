@@ -1,203 +1,108 @@
-using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using Microsoft.Data.SqlClient;
+using Domain.Entities;
 
-using Domain;
-using Application;
-
-namespace Infrastructure;
-
-public class PrestamosDbContext
+namespace Infrastructure.Data
 {
-    private readonly string _connectionString;
-
-    public PrestamosDbContext(string connectionString)
+    public class PrestamosDbContext
     {
-        _connectionString = connectionString;
-    }
+        private readonly string _connectionString;
 
-    public List<IM253E01Prestamo> List()
-    {
-        var data = new List<IM253E01Prestamo>();
-
-        using (var con = new SqlConnection(_connectionString))
-        using (var cmd = new SqlCommand(@"
-            SELECT p.[Id], p.[UsuarioId], p.[LibroId], p.[FechaPrestamo], p.[FechaDevolucion],
-                   u.[Id] AS UsuarioId, u.[Nombre], 
-                   l.[Id] AS LibroId, l.[Titulo]
-            FROM [IM253E00Prestamos] p
-            JOIN [IM253E00Usuario] u ON p.[UsuarioId] = u.[Id]
-            JOIN [IM253E00Libro] l ON p.[LibroId] = l.[Id]", con))
+        public PrestamosDbContext(string connectionString)
         {
-            try
+            _connectionString = connectionString;
+        }
+
+        public List<IM253E01Prestamo> List()
+        {
+            var prestamos = new List<IM253E01Prestamo>();
+            using (var con = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand("SELECT [Id],[UsuarioId],[LibroId],[FechaPrestamo],[FechaDevolucion] FROM [IM253E00Prestamo]", con))
             {
                 con.Open();
-                var dr = cmd.ExecuteReader();
-                while (dr.Read())
+                using (var dr = cmd.ExecuteReader())
                 {
-                    var prestamo = new IM253E01Prestamo
+                    while (dr.Read())
                     {
-                        Id = (Guid)dr["Id"],
-                        UsuarioId = (Guid)dr["UsuarioId"],
-                        LibroId = (Guid)dr["LibroId"],
-                        FechaPrestamo = (DateTime)dr["FechaPrestamo"],
-                        FechaDevolucion = dr["FechaDevolucion"] as DateTime?,
-                        Usuario = new IM253E01Usuario
+                        prestamos.Add(new IM253E01Prestamo
                         {
-                            Id = (Guid)dr["UsuarioId"],
-                            Nombre = dr["Nombre"] as string ?? string.Empty
-                        },
-                        Libro = new IM253E01Libro
-                        {
-                            Id = (Guid)dr["LibroId"],
-                            Titulo = dr["Titulo"] as string ?? string.Empty
-                        }
-                    };
-                    data.Add(prestamo);
+                            Id = (Guid)dr["Id"],
+                            UsuarioId = (Guid)dr["UsuarioId"],
+                            LibroId = (Guid)dr["LibroId"],
+                            FechaPrestamo = (DateTime)dr["FechaPrestamo"],
+                            FechaDevolucion = dr["FechaDevolucion"] as DateTime?
+                        });
+                    }
                 }
-                return data;
             }
-            catch (Exception ex)
-            {
-                // Consider logging the exception here
-                throw new Exception("Error al listar préstamos.", ex);
-            }
+            return prestamos;
         }
-    }
 
-    public IM253E01Prestamo Details(Guid id)
-    {
-        IM253E01Prestamo data = null;
-
-        using (var con = new SqlConnection(_connectionString))
-        using (var cmd = new SqlCommand(@"
-            SELECT p.[Id], p.[UsuarioId], p.[LibroId], p.[FechaPrestamo], p.[FechaDevolucion],
-                   u.[Id] AS UsuarioId, u.[Nombre], 
-                   l.[Id] AS LibroId, l.[Titulo]
-            FROM [IM253E00Prestamos] p
-            JOIN [IM253E00Usuario] u ON p.[UsuarioId] = u.[Id]
-            JOIN [IM253E00Libro] l ON p.[LibroId] = l.[Id]
-            WHERE p.[Id] = @id", con))
+        public IM253E01Prestamo Details(Guid id)
         {
-            cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = id;
-            try
+            var prestamo = new IM253E01Prestamo();
+            using (var con = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand("SELECT [Id],[UsuarioId],[LibroId],[FechaPrestamo],[FechaDevolucion] FROM [IM253E00Prestamo] WHERE [Id] = @id", con))
             {
+                cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = id;
                 con.Open();
-                var dr = cmd.ExecuteReader();
-                if (dr.Read())
+                using (var dr = cmd.ExecuteReader())
                 {
-                    data = new IM253E01Prestamo
+                    if (dr.Read())
                     {
-                        Id = (Guid)dr["Id"],
-                        UsuarioId = (Guid)dr["UsuarioId"],
-                        LibroId = (Guid)dr["LibroId"],
-                        FechaPrestamo = (DateTime)dr["FechaPrestamo"],
-                        FechaDevolucion = dr["FechaDevolucion"] as DateTime?,
-                        Usuario = new IM253E01Usuario
-                        {
-                            Id = (Guid)dr["UsuarioId"],
-                            Nombre = dr["Nombre"] as string ?? string.Empty
-                        },
-                        Libro = new IM253E01Libro
-                        {
-                            Id = (Guid)dr["LibroId"],
-                            Titulo = dr["Titulo"] as string ?? string.Empty
-                        }
-                    };
+                        prestamo.Id = (Guid)dr["Id"];
+                        prestamo.UsuarioId = (Guid)dr["UsuarioId"];
+                        prestamo.LibroId = (Guid)dr["LibroId"];
+                        prestamo.FechaPrestamo = (DateTime)dr["FechaPrestamo"];
+                        prestamo.FechaDevolucion = dr["FechaDevolucion"] as DateTime?;
+                    }
                 }
-                return data;
             }
-            catch (Exception ex)
-            {
-                // Consider logging the exception here
-                throw new Exception("Error al obtener detalles del préstamo.", ex);
-            }
-        }
-    }
-
-    public void Create(IM253E01Prestamo data)
-    {
-        if (data == null)
-        {
-            throw new ArgumentNullException(nameof(data));
+            return prestamo;
         }
 
-        data.Id = Guid.NewGuid();
-
-        using (var con = new SqlConnection(_connectionString))
-        using (var cmd = new SqlCommand("INSERT INTO [IM253E00Prestamos] ([Id],[UsuarioId],[LibroId],[FechaPrestamo],[FechaDevolucion]) VALUES (@id,@usuarioId,@libroId,@fechaPrestamo,@fechaDevolucion)", con))
+        public void Create(IM253E01Prestamo prestamo)
         {
-            cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = data.Id;
-            cmd.Parameters.Add("@usuarioId", SqlDbType.UniqueIdentifier).Value = data.UsuarioId;
-            cmd.Parameters.Add("@libroId", SqlDbType.UniqueIdentifier).Value = data.LibroId;
-            cmd.Parameters.Add("@fechaPrestamo", SqlDbType.SmallDateTime).Value = data.FechaPrestamo;
-            cmd.Parameters.Add("@fechaDevolucion", SqlDbType.SmallDateTime).Value = (object)data.FechaDevolucion ?? DBNull.Value;
-
-            try
+            using (var con = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand("INSERT INTO [IM253E00Prestamo] ([Id],[UsuarioId],[LibroId],[FechaPrestamo],[FechaDevolucion]) VALUES (@id,@usuarioId,@libroId,@fechaPrestamo,@fechaDevolucion)", con))
             {
+                cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
+                cmd.Parameters.Add("@usuarioId", SqlDbType.UniqueIdentifier).Value = prestamo.UsuarioId;
+                cmd.Parameters.Add("@libroId", SqlDbType.UniqueIdentifier).Value = prestamo.LibroId;
+                cmd.Parameters.Add("@fechaPrestamo", SqlDbType.DateTime2).Value = prestamo.FechaPrestamo;
+                cmd.Parameters.Add("@fechaDevolucion", SqlDbType.DateTime2).Value = (object)prestamo.FechaDevolucion ?? DBNull.Value;
+
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
-            {
-                // Consider logging the exception here
-                throw new Exception("Error al crear el préstamo.", ex);
-            }
-        }
-    }
-
-    public void Edit(IM253E01Prestamo data)
-    {
-        if (data == null)
-        {
-            throw new ArgumentNullException(nameof(data));
         }
 
-        using (var con = new SqlConnection(_connectionString))
-        using (var cmd = new SqlCommand("UPDATE [IM253E00Prestamos] SET [UsuarioId] = @usuarioId, [LibroId] = @libroId, [FechaPrestamo] = @fechaPrestamo, [FechaDevolucion] = @fechaDevolucion WHERE [Id] = @id", con))
+        public void Edit(IM253E01Prestamo prestamo)
         {
-            cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = data.Id;
-            cmd.Parameters.Add("@usuarioId", SqlDbType.UniqueIdentifier).Value = data.UsuarioId;
-            cmd.Parameters.Add("@libroId", SqlDbType.UniqueIdentifier).Value = data.LibroId;
-            cmd.Parameters.Add("@fechaPrestamo", SqlDbType.SmallDateTime).Value = data.FechaPrestamo;
-            cmd.Parameters.Add("@fechaDevolucion", SqlDbType.SmallDateTime).Value = (object)data.FechaDevolucion ?? DBNull.Value;
-
-            try
+            using (var con = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand("UPDATE [IM253E00Prestamo] SET [UsuarioId] = @usuarioId, [LibroId] = @libroId, [FechaPrestamo] = @fechaPrestamo, [FechaDevolucion] = @fechaDevolucion WHERE [Id] = @id", con))
             {
+                cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = prestamo.Id;
+                cmd.Parameters.Add("@usuarioId", SqlDbType.UniqueIdentifier).Value = prestamo.UsuarioId;
+                cmd.Parameters.Add("@libroId", SqlDbType.UniqueIdentifier).Value = prestamo.LibroId;
+                cmd.Parameters.Add("@fechaPrestamo", SqlDbType.DateTime2).Value = prestamo.FechaPrestamo;
+                cmd.Parameters.Add("@fechaDevolucion", SqlDbType.DateTime2).Value = (object)prestamo.FechaDevolucion ?? DBNull.Value;
+
                 con.Open();
-                var rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected == 0)
-                {
-                    throw new Exception($"No se encontró préstamo con Id {data.Id} para actualizar.");
-                }
-            }
-            catch (Exception ex)
-            {
-                // Consider logging the exception here
-                throw new Exception("Error al editar el préstamo.", ex);
+                cmd.ExecuteNonQuery();
             }
         }
-    }
 
-    public void Delete(Guid id)
-    {
-        using (var con = new SqlConnection(_connectionString))
-        using (var cmd = new SqlCommand("DELETE FROM [IM253E00Prestamos] WHERE [Id] = @id", con))
+        public void Delete(Guid id)
         {
-            cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = id;
-
-            try
+            using (var con = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand("DELETE FROM [IM253E00Prestamo] WHERE [Id] = @id", con))
             {
+                cmd.Parameters.Add("@id", SqlDbType.UniqueIdentifier).Value = id;
                 con.Open();
-                var rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected == 0)
-                {
-                    throw new Exception($"No se encontró préstamo con Id {id} para eliminar.");
-                }
-            }
-            catch (Exception ex)
-            {
-                // Consider logging the exception here
-                throw new Exception("Error al eliminar el préstamo.", ex);
+                cmd.ExecuteNonQuery();
             }
         }
     }

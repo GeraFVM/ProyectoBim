@@ -1,0 +1,9 @@
+C:\Users\geraf\OneDrive\Escritorio\ProyectoBim\src\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.csproj.AssemblyReference.cache
+C:\Users\geraf\OneDrive\Escritorio\ProyectoBim\src\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\geraf\OneDrive\Escritorio\ProyectoBim\src\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.AssemblyInfoInputs.cache
+C:\Users\geraf\OneDrive\Escritorio\ProyectoBim\src\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.AssemblyInfo.cs
+C:\Users\geraf\OneDrive\Escritorio\ProyectoBim\src\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.csproj.CoreCompileInputs.cache
+C:\Users\geraf\OneDrive\Escritorio\ProyectoBim\src\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\geraf\OneDrive\Escritorio\ProyectoBim\src\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.RazorAssemblyInfo.cache
+C:\Users\geraf\OneDrive\Escritorio\ProyectoBim\src\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.RazorAssemblyInfo.cs
+C:\Users\geraf\OneDrive\Escritorio\ProyectoBim\src\Presentation.WebApp\obj\Debug\net9.0\Presentation.WebApp.sourcelink.json
