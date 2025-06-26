@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "mnbRO24I12c=",
+  "dgSpecHash": "Ywv3BRUfBNw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Johan\\Documents\\Nueva\\ProyectoBim\\src\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\src\\Application\\Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Johan\\.nuget\\packages\\microsoft.win32.systemevents\\9.0.6\\microsoft.win32.systemevents.9.0.6.nupkg.sha512",
-    "C:\\Users\\Johan\\.nuget\\packages\\system.drawing.common\\9.0.6\\system.drawing.common.9.0.6.nupkg.sha512"
+    "C:\\Users\\geraf\\.nuget\\packages\\microsoft.win32.systemevents\\9.0.6\\microsoft.win32.systemevents.9.0.6.nupkg.sha512",
+    "C:\\Users\\geraf\\.nuget\\packages\\system.drawing.common\\9.0.6\\system.drawing.common.9.0.6.nupkg.sha512"
   ],
   "logs": []
 }
