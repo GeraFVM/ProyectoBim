@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Libros > Detalle";
+}
+
+@model Domain.Entities.IM253E01Libro
+<dl class="row">
+    <dt class="col-sm-3">Id</dt>
+    <dd class="col-sm-9">@Model.Id</dd>
+
+    <dt class="col-sm-3">Título</dt>
+    <dd class="col-sm-9">@Model.Titulo</dd>
+
+    <dt class="col-sm-3">Autor</dt>
+    <dd class="col-sm-9">@Model.Autor</dd>
+
+    <dt class="col-sm-3">Editorial</dt>
+    <dd class="col-sm-9">@(Model.Editorial ?? "No especificado")</dd>
+
+    <dt class="col-sm-3">ISBN</dt>
+    <dd class="col-sm-9">@Model.ISBN</dd>
+
+    <dt class="col-sm-3">Inicio</dt>
+    <dd class="col-sm-9">@(Model.Inicio?.ToShortDateString() ?? "Fecha no disponible")</dd>
+
+    @if (!string.IsNullOrEmpty(Model.Foto))
+    {
+        <dt class="col-sm-3">Portada</dt>
+        <dd class="col-sm-9">
+            <img src="@Model.Foto" alt="Portada del libro @Model.Titulo" class="img-thumbnail" style="max-width: 200px;">
+        </dd>
+    }
+</dl>
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-danger">Regresar</a>
+</div>

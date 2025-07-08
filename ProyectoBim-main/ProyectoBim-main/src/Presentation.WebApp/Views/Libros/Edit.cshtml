@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Libros > Editar";
+}
+
+@model Domain.Entities.IM253E01Libro
+
+<h1>
+    Actualizar:
+</h1>
+
+<form asp-action="Edit">
+    <input asp-for="Id" type="hidden" required />
+
+    Título: <input asp-for="Titulo" required />
+    <br />
+    Inicio: <input asp-for="Inicio" type="date" required />
+    <br />
+    <button>Actualizar</button>
+</form>
+
+<a asp-action="Index">Cancelar</a>

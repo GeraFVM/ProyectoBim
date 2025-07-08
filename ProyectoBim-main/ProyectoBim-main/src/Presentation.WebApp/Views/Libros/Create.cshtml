@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Libros > Crear";
+}
+
+@model Domain.Entities.IM253E01Libro
+
+<h1>
+    Insertar:
+</h1>
+
+<form asp-action="Create">
+    Título: <input asp-for="Titulo" required />
+    <br />
+    Inicio: <input asp-for="Inicio" type="date" required />
+    <br />
+    <button>Insertar</button>
+</form>
+
+<a asp-action="Index">Cancelar</a>

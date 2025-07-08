@@ -1,0 +1,34 @@
+@model List<Domain.Entities.IM253E01Libro>
+
+<table>
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Fecha de Publicación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var libro in Model)
+        {
+            <tr>
+                <td>@libro.Titulo</td>
+                <td>
+                    @if (libro.FechaPublicacion != null)
+                    {
+                        @libro.FechaPublicacion.ToShortDateString()
+                    }
+                    else
+                    {
+                        <span>No disponible</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@libro.Id">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@libro.Id">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@libro.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
