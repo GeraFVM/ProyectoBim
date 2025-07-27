@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NvXH9jET0nw=",
+  "dgSpecHash": "zsg4HFToEV8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\geraf\\Onedrive\\Escritorio\\ProyectoBim-main\\ProyectoBim-main\\src\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\geraf\\OneDrive\\Escritorio\\ProyectoBim\\ProyectoBim\\ProyectoBim1.0\\src\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\geraf\\.nuget\\packages\\microsoft.win32.systemevents\\9.0.6\\microsoft.win32.systemevents.9.0.6.nupkg.sha512",
     "C:\\Users\\geraf\\.nuget\\packages\\system.drawing.common\\9.0.6\\system.drawing.common.9.0.6.nupkg.sha512"
